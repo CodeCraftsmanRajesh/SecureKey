@@ -77,7 +77,7 @@ def add_password():
     }
 
     if website != "" and email_username != "" and password != "":
-        correct_info = messagebox.askokcancel(title=website, message=f"These are the details you have entered:\n"
+        correct_info = messagebox.askokcancel(title=website, message=f"Details you have entered:\n"
                                                                      f"Email: {email_username}\nPassword: {password}\n"
                                                                      f"Is it OK to save?")
         if correct_info:
@@ -98,7 +98,7 @@ def add_password():
             finally:
                 website_input.delete(0, END)
                 email_username_input.delete(0, END)
-                email_username_input.insert(0, "demo@email.com")
+                email_username_input.insert(0, "abc@email.com")
                 password_input.delete(0, END)
     else:
         messagebox.showerror(title="Insufficient information", message="Please don't leave any fields empty")
@@ -117,41 +117,46 @@ canvas.create_image(120, 100, image=logo)
 canvas.grid(row=0, column=1)
 
 # Widgets
-# Website label
+# Website
 website_label = Label(text="Website:", font=FONT, bg=WHITE, fg=BLACK)
+website_label.grid(row=1, column=0)
+
 website_input = Entry(width=25, highlightbackground=BLACK, highlightthickness=1, font=FONT)
+website_input.grid(row=1, column=1)
 website_input.focus()
 
-# Email/Username label
+# Email/Username
 email_username_label = Label(text="Email/Username:", font=FONT, bg=WHITE, fg=BLACK)
+email_username_label.grid(row=2, column=0)
+
 email_username_input = Entry(width=44, highlightbackground=BLACK, highlightthickness=1, font=FONT)
 email_username_input.insert(0, "abc@email.com")
+email_username_input.grid(row=2, column=1, columnspan=2, sticky="e", pady=2)
+
 
 # Password label
 password_label = Label(text="Password:", font=FONT, bg=WHITE, fg=BLACK)
+password_label.grid(row=3, column=0)
 password_input = Entry(width=25, highlightbackground=BLACK, highlightthickness=1, font=FONT)
+password_input.grid(row=3, column=1)
 
 # Buttons
 clear_all_button = Button(text="Clear All", font=FONT, fg="white", bg=RED,
                           width=44, command=clear_all)
+clear_all_button.grid(row=5, column=0, columnspan=3, sticky="e", pady=2)
+
 search_button = Button(text="Search", font=FONT, fg="white", bg="#2059e8",
                        width=16, command=search_password)
+search_button.grid(row=1, column=2, pady=2)
+
 pass_gen_button = Button(text="Generate Password", font=FONT, fg="white", bg=GREEN,
                          command=generate_password)
+pass_gen_button.grid(row=3, column=2, sticky="e", pady=2)
+
 add_button = Button(text="Add Password", font=FONT, bg=GREEN, fg="white", width=44,
                     command=add_password)
-
-# Grids
-website_label.grid(row=1, column=0)
-website_input.grid(row=1, column=1)
-email_username_label.grid(row=2, column=0)
-email_username_input.grid(row=2, column=1, columnspan=2, sticky="e", pady=2)
-password_label.grid(row=3, column=0)
-password_input.grid(row=3, column=1)
-clear_all_button.grid(row=5, column=0, columnspan=3, sticky="e", pady=2)
-search_button.grid(row=1, column=2, pady=2)
-pass_gen_button.grid(row=3, column=2, sticky="e", pady=2)
 add_button.grid(row=4, column=0, columnspan=3, sticky="e", pady=2)
+
 
 # Root mainloop
 root.mainloop()
